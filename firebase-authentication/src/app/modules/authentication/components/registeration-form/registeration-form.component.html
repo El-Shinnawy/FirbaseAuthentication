@@ -1,12 +1,26 @@
-<form (ngSubmit)="register()">
-    <div class="form-group">
-      <label for="email">Email address:</label>
-      <input name="email" type="email" class="form-control" placeholder="Enter email" id="email" [(ngModel)]="email" required>
+<form (ngSubmit)="register()" [formGroup]="form" novalidate>
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input formControlName="email" type="email" class="form-control" placeholder="Enter email" id="email" [(ngModel)]="email">
+    <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="text-danger">
+      <div *ngIf="form.controls['email'].errors.required">
+        Please enter email
+      </div>
+      <div *ngIf="form.controls['email'].errors.email">
+        Please enter a valid email
+      </div>
     </div>
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input name="password" type="password" class="form-control" placeholder="Enter password" id="pwd" [(ngModel)]="password" required>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input formControlName="password" type="password" class="form-control" placeholder="Enter password" id="pwd" [(ngModel)]="password">
+    <div *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)" class="text-danger">
+      <div *ngIf="form.controls['password'].errors.required">
+        Please enter password
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  <div class="text-danger">{{error}}</div>
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
 Do you already have an account? <a class="link" [routerLink]="'/auth/login'">Login now</a>
