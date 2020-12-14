@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "firebase-authentication"
+    }
+  },
+  "defaultProject": "firebase-authentication",
+  "cli": {
+    "analytics": false
+  }
 }
