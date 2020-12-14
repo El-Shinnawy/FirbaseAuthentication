@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-registeration-form',
@@ -10,9 +11,18 @@ export class RegisterationFormComponent implements OnInit {
   email: string;
   password: string;
   
-  constructor() { }
+  constructor(private _authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
+  register(){
+    this._authService.register(this.email, this.password).then(res => {
+      console.log(res);
+    })
+  }
+
+  logout(){
+    this._authService.logout();
+  }
 }
