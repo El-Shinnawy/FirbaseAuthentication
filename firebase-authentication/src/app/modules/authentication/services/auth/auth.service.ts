@@ -21,6 +21,8 @@ export class AuthService {
       this.isLoggedIn = true;
       localStorage.setItem('token', JSON.stringify(res.user));
       return res;
+    }, (err)=>{
+      return err;
     });
   }
 
@@ -29,6 +31,8 @@ export class AuthService {
     .then(res => {
       localStorage.setItem('token', JSON.stringify(res.user));
       return res;
+    }, (err)=>{
+      return err;
     });
   }
 
